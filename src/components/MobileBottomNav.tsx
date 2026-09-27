@@ -1,0 +1,74 @@
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Home, Package, HeartHandshake, MessageSquareHeart, User as UserIcon, Shield } from 'lucide-react';
+import { useNutriGo } from '@/context/NutriGoContext';
+
+export default function MobileBottomNav() {
+  const pathname = usePathname();
+  const { currentUser } = useNutriGo();
+
+  // If in admin view, don't show the customer bottom nav or show admin items
+  const isAdminPath = pathname.startsWith('/admin');
+
+  if (isAdminPath) {
+    return null;
+  }
+
+  const items = [
+    { name: 'Home', href: '/', icon: Home },
+    { name: 'Packages', href: '/packages', icon: Package },
+    {
+      name: 'My NutriGo',
+      href: '/my-nutrigo',
+      icon: HeartHandshake,
+      badge:
+        currentUser?.membershipStatus === 'trial'
+          ? `Day ${currentUser.trialDay}`
+          : currentUser?.membershipStatus === 'monthly'
+          ? 'Active'
+          : undefined,
+    },
+    { name: 'Feedback', href: '/feedback', icon: MessageSquareHeart },
+    { name: 'Profile', href: '/profile', icon: UserIcon },
+  ];
+
+  return (
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FAF9F5]/95 backdrop-blur-md border-t border-[#E5EBE3] px-2 py-1.5 safe-area-pb shadow-lg">
+      <div className="flex items-center justify-around">
+        {items.map((item) => {
+          const Icon = item.icon;
+          const isActive = pathname === item.href;
+
+          return (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`flex flex-col items-center py-1 px-2.5 rounded-xl transition relative ${
+                isActive
+                  ? 'text-[#2D5A27] font-bold'
+                  : 'text-[#5C675E] hover:text-[#1E3F20]'
+              }`}
+            >
+              <div className="relative">
+                <Icon
+                  className={`w-5 h-5 transition-transform ${
+                    isActive ? 'scale-110 text-[#2D5A27]' : ''
+                  }`}
+                />
+                {item.badge && (
+                  <span className="absolute -top-1 -right-2 text-[9px] px-1 py-0.2 bg-emerald-600 text-white rounded-full font-bold">
+                    {item.badge}
+                  </span>
+                )}
+              </div>
+              <span className="text-[11px] mt-0.5 tracking-tight">{item.name}</span>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
+}

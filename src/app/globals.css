@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #FAF9F5;
+    --bg-card: #FFFFFF;
+    --brand-dark: #1E3F20;
+    --brand-primary: #2D5A27;
+    --brand-medium: #4A7C59;
+    --brand-light: #EBF3E8;
+    --brand-accent: #8FAF85;
+    --brand-gold: #D4A373;
+    --text-primary: #1C241D;
+    --text-secondary: #5C675E;
+    --text-muted: #8C978E;
+    --border-light: #E5EBE3;
+  }
+
+  body {
+    background-color: #FAF9F5;
+    color: #1C241D;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom aesthetic utility classes */
+.bg-cream {
+  background-color: #FAF9F5;
+}
+
+.bg-cream-card {
+  background-color: #FFFFFF;
+}
+
+.bg-brand-50 {
+  background-color: #F3F8F1;
+}
+
+.bg-brand-100 {
+  background-color: #E5EFE2;
+}
+
+.bg-brand-600 {
+  background-color: #2D5A27;
+}
+
+.bg-brand-700 {
+  background-color: #21431D;
+}
+
+.text-brand-700 {
+  color: #21431D;
+}
+
+.text-brand-800 {
+  color: #173114;
+}
+
+.border-brand-subtle {
+  border-color: #E2EBE0;
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 20px -2px rgba(33, 67, 29, 0.05), 0 2px 6px -1px rgba(33, 67, 29, 0.03);
+}
+
+.shadow-card {
+  box-shadow: 0 8px 30px -4px rgba(45, 90, 39, 0.07);
+}
+
+/* Smooth transitions */
+button, a, input, select, textarea {
+  transition: all 0.15s ease-in-out;
+}
+
+/* Custom scrollbar for calm aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF9F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1DCCE;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B4C4B0;
+}
